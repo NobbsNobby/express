@@ -1,17 +1,18 @@
-const app = require('express')();
+const express = require("express");
+const app = express();
 
-app.get('/', function (req, res) {
-    res.send('Express server v 2')
+app.use(
+  express.static(__dirname + "/public", {
+    extensions: ['html', 'htm']
+  })
+);
+
+app.get("/", function(req, res) {
+  res.send("Express server");
 });
-
-app.get("/about", function(request, response){
-
-    response.send("<h1>О сайте</h1>");
+app.get("/contact", function(request, response) {
+  response.send("<h1>Контакты</h1>");
 });
-app.get("/contact", function(request, response){
-
-    response.send("<h1>Контакты</h1>");
-});
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+app.listen(3000, function() {
+  console.log("Example app listening on port 3000!");
 });
